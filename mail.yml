@@ -1,0 +1,14 @@
+# ~/.tmuxinator/mail.yml
+
+name: home
+root: ~/
+
+windows:
+  - mail:
+      layout: even-horizontal
+      panes:
+        - mutt
+        - zsh
+  - shell:
+    panes:
+      - zsh

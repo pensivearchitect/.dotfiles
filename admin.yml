@@ -1,0 +1,13 @@
+# ~/.tmuxinator/admin.yml
+
+name: admin
+root: ~/
+
+windows:
+  - admin:
+      layout: main-vertical
+      panes:
+        - zsh
+        - zsh
+        - vim
+  - alternate:
