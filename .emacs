@@ -25,7 +25,6 @@
 (require 'popup)
 (require 'php-extras)
 (require 'auto-complete-config)
-
 (defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
     (popup-menu*
@@ -70,7 +69,7 @@
 (eval-after-load "ruby-mode"
   '(add-hook 'ruby-mode-hook 'ruby-electric-mode))
 (add-hook 'haskell-mode-hook 'structured-haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'scala-mode2-hook 'ensime-scala-hook)
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'robe-mode-hook 'robe-ac-setup)
@@ -82,7 +81,6 @@
    nil `(("(\\(lambda\\>\\)"
           (0 (progn (compose-region (match-beginning 1) (match-end 1)
                                     ,(make-char 'greek-iso8859-7 107))))))))
-
 
 
 ;;; define global mode agnostic keybindings
@@ -105,6 +103,10 @@
      (define-key paredit-mode-map (kbd "c-(") 'paredit-backward-slurp-sexp)))
 (eval-after-load 'inf-ruby '
   '(define-key inf-ruby-mode-map (kbd "tab") 'auto-complete))
+(eval-after-load "php-mode"
+  '(progn
+     (define-key php-mode-map (kbd "\C-c\C-f") 'cedit-wrap-brace)
+     ))
 (eval-after-load "haskell-mode"
   '(progn
      (define-key haskell-mode-map (kbd "c-x c-d") nil)
@@ -114,7 +116,8 @@
      (define-key haskell-mode-map (kbd "c-c c-t") 'haskell-process-do-type)
      (define-key haskell-mode-map (kbd "c-c c-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "c-c m-.") nil)
-     (define-key haskell-mode-map (kbd "c-c c-d") nil)))
+     (define-key haskell-mode-map (kbd "<return>") 'newline)
+    (define-key haskell-mode-map (kbd "c-c c-d") nil)))
 (eval-after-load 'auto-complete
   '(add-to-list 'ac-modes 'inf-ruby-mode))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -188,7 +191,7 @@
 (bash-completion-setup)
 ; (smex-initialize)
 (pretty-lambdas)
-; (global-rbenv-mode)
+(global-rbenv-mode)
 
 (defun wl-popup (title msg)
   (interactive)
