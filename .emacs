@@ -67,10 +67,10 @@
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-hook 'js2-mode-hook 'flymake-jslint-load)
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
+;; (eval-after-load 'tern
+;;   '(progn
+;;      (require 'tern-auto-complete)
+;;      (tern-ac-setup)))
 (eval-after-load "ruby-mode"
   '(add-hook 'ruby-mode-hook 'ruby-electric-mode))
 (add-hook 'haskell-mode-hook 'structured-haskell-mode)
