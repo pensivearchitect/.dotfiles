@@ -156,6 +156,8 @@ let g:ycm_collect_identifiers_from_comments_and_string = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:user_emmet_leader_key='<C-y>'
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:rspec_command = "VimuxRunCommand( spring rspec { spec } )"
 let VimuxUseNearestPane = 1
 if executable('coffeetags')
