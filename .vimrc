@@ -210,6 +210,7 @@ au Filetype haskell nnoremap <buffer> <leader>t :HdevtoolsType<cr>
 au Filetype haskell nnoremap <buffer> <silent> <leader>c :HdevtoolsClear<cr>
 " Js stuff
 autocmd Filetype javascript let g:tern_show_argument_hints='on_move'
+au      BufNewFile, BufRead *.es6 set filetype=javascript
 " Make NERDTree behave properly 
 " Remappings
 nmap <F2> :TagbarToggle <cr>
