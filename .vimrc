@@ -154,6 +154,7 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:bufferline_echo = 0
 let g:ycm_collect_identifiers_from_comments_and_string = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:user_emmet_leader_key='<C-y>'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:rspec_command = "VimuxRunCommand( spring rspec { spec } )"
 let VimuxUseNearestPane = 1
