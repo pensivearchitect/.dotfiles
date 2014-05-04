@@ -29,7 +29,26 @@
 (require 'popup)
 (require 'irony)
 (require 'php-extras)
+(require 'dime)
+(require 'ac-c-headers)
+(require 'php-auto-yasnippets "~/emacs/php-auto-yasnippets/php-auto-yasnippets.el")
+(setq php-auto-yasnippet-php-program "~/emacs/php-auto-yasnippets/Create-PHP-YASnippet.php")
+(dime-setup '(dime-dylan dime-repl dime-compiler-notes-tree))
+(setq dime-dylan-implementations
+      '((opendylan ("~/source/opendylan-2013.2/bin/dswank")
+                   :env ("OPEN_DYLAN_USER_REGISTRIES=~/source/opendylan-2013.2/sources/registry"))))
+
+;(require 'epc)
+;(defvar epc-server (epc:start-epc "python" '("~/emacs/epc-server.py")))
+;(deferred:$
+;  (epc:call-deferred epc-server 'echo '(10))
+;  (deferred:nextc it
+;    (lambda (x) (message "Return : %S" x))))
+
+;(message "Return : %S" (epc:call-sync epc-server 'echo '(10 40)))
+;(require 'webkit "~/emacs/webkit.el")
 (require 'auto-complete-config)
+
 (defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
     (popup-menu*
@@ -110,7 +129,9 @@
   '(define-key inf-ruby-mode-map (kbd "tab") 'auto-complete))
 (eval-after-load "php-mode"
   '(progn
-     (define-key php-mode-map (kbd "\C-c\C-f") 'cedit-wrap-brace)
+;     (define-key php-mode-map (kbd "\C-c\C-f") 'cedit-wrap-brace)
+;     (define-key php-mode-map (kbd "\C-c\C-h") 'cedit-up-block-backward)
+;     (define-key php-mode-map (kbd "\C-c\C-l") 'cedit-up-block-forward)
      ))
 (eval-after-load "haskell-mode"
   '(progn
