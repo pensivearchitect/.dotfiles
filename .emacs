@@ -75,6 +75,7 @@
 ;(el-get 'sync)
 
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+(add-hook 'c-mode-hook 'my-c-hooks)
 (add-hook 'c-mode-hook
           (lambda ()
             (add-to-list 'ac-sources 'ac-source-c-headers)
@@ -111,7 +112,11 @@
    nil `(("(\\(lambda\\>\\)"
           (0 (progn (compose-region (match-beginning 1) (match-end 1)
                                     ,(make-char 'greek-iso8859-7 107))))))))
-
+(defun my-c-hooks ()
+  (yas/minor-mode-on)
+  (auto-complete-mode 1)
+  (when (member major-mode irony-known-modes)
+    (irony-mode 1)))
 
 ;;; define global mode agnostic keybindings
 (global-set-key "\C-c\C-m" 'execute-extended-command)
