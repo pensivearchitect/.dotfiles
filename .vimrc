@@ -113,6 +113,18 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'Shougo/vimshell.vim'
+Bundle 'm2mdas/phpcomplete-extended'
+Bundle "mattn/emmet-vim"
+Bundle "SirVer/ultisnips"
+Bundle "reedes/vim-pencil"
+Bundle "reedes/vim-wordy"
+Bundle "reedes/vim-lexical"
+Bundle "tpope/vim-classpath"
+Bundle "tpope/vim-rsi.git"
+Bundle "tpope/vim-vinegar"
+Bundle "godlygeek/tabular"
+Bundle "tpope/timl"
+Bundle "slim-template/vim-slim"
 " Global Settings
 au FocusLost * silent! wa
 au VimEnter * RainbowParenthesesToggle
