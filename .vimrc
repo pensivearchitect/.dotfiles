@@ -102,8 +102,8 @@ Bundle 'bitc/vim-hdevtools'
 Bundle 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-" Bundle "garbas/vim-snipmate"
-" Bundle 'honza/vim-snippets'
+" Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'thoughtbot/vim-rspec'
