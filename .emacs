@@ -203,6 +203,7 @@
 (setq projectile-rails-expand-snippet nil)
 (setq comment-column 0)
 (setq fill-column 0)
+(setq multi-term-program "/bin/bash")
 (setq shm-program-name "/Users/joshua/emacs/structured-haskell-mode/dist/build/structured-haskell-mode/structured-haskell-mode")
 
 (defun load-solarized() 
@@ -230,7 +231,7 @@
 (global-semantic-highlight-func-mode t)
 (global-semantic-show-unmatched-syntax-mode t)
 (bash-completion-setup)
-; (smex-initialize)
+(smex-initialize)
 (pretty-lambdas)
 (global-rbenv-mode)
 (windmove-default-keybindings)
