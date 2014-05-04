@@ -136,15 +136,15 @@ runtime macros/matchit.vim
 " Plugin settings 
 let b:surround_indent = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
-" let g:syntastic_echo_current_error=1
-" let g:syntastic_enable_signs=1
-" let g:syntastic_enable_highlighting = 1
-" let g:syntastic_check_on_open=1
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" highlight SyntasticErrorSign ctermfg=1 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:syntastic_echo_current_error=1
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_check_on_open=1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+highlight SyntasticErrorSign ctermfg=1
+let g:syntastic_always_populate_loc_list = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
