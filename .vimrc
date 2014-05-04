@@ -190,7 +190,21 @@ autocmd FileType ruby  let g:rubycomplete_include_objectspace = 1
 " Eclim
 autocmd Filetype ruby  let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype scala let g:EclimCompletionMethod = 'omnifunc'
-autocmd Filetype java nnoremap <leader> c :Mvn compile
+autocmd Filetype php   let g:EclimCompletionMethod = 'omnifunc'
+let b:EclimPhpHtmlValidate = 1
+" Java mappings
+let g:EclimCompletionMethod = 'omnifunc'
+autocmd Filetype java nnoremap <leader> t :Mvn compile
+autocmd Filetype java nnoremap <leader> p :Mvn package
+autocmd Filetype java nnoremap <leader> e :Mvn eclipse:eclipse
+autocmd Filetype java nnoremap <leader> g :JavaGet
+autocmd Filetype java nnoremap <leader> s :JavaSet
+autocmd Filetype java nnoremap <leader> co :JavaConstructor
+autocmd Filetype java nnoremap <leader> rn :JavaRename
+
+" autocmd Filetype php setlocal omnifunc=eclim#phpcomplete_extended#php#complete
+" autocmd Filetype php let g:EclimCompletionMethod = 'omnifunc'
+" autocmd Filetype php setlocal omnifunc=phpcomplete_extended#CompletePHP
 " Hackage
 au Filetype haskell nnoremap <buffer> <leader>t :HdevtoolsType<cr>
 au Filetype haskell nnoremap <buffer> <silent> <leader>c :HdevtoolsClear<cr>
