@@ -10,6 +10,7 @@ set nocompatible
 set ai
 set copyindent
 set magic
+set autochdir
 set modelines=0
 set encoding=utf-8
 set showcmd
