@@ -307,7 +307,12 @@ augroup END
 inoremap {<cr> {<cr>}<c-o>O<tab>
 inoremap [<cr> [<cr>]<c-o>O<tab>
 inoremap (<cr> (<cr>)<c-o>O<tab>)]}
-" imap = ;g ":UltiSnipsExpandTrigger"
-    " let g:UltiSnipsJumpForwardTrigger = <leader>n
-    " let g:UltiSnipsJumpBackwardTrigger = <leader>p
- 
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init()
+augroup END
+nnoremap gvd :Gdiff
+nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
