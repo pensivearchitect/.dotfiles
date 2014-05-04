@@ -160,27 +160,6 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:rspec_command = "VimuxRunCommand( spring rspec { spec } )"
 let VimuxUseNearestPane = 1
-if executable('coffeetags')
-  " let g:tagbar_type_coffee = {
-  "       \ 'ctagsbin' : 'coffeetags',
-  "       \ 'ctagsargs' : '',
-  "       \ 'kinds' : [
-  "       \ 'f:functions',
-  "       \ 'o:object',
-  "       \ ],
-  "       \ 'sro' : .,
-  "       \ 'kind2scope' : {
-  "       \ 'f' : 'object',
-  "       \ 'o' : 'object',
-  "       \ }
-  "       \ }
-endif
-" let g:lightline = {
-" \ 'component': {
-" \   'readonly': '%{&readonly? LOCKED :}',
-" \ },
-" \ }
-
 let g:rbpt_colorpairs = [
       \ ['brown',       'RoyalBlue3'],
       \ ['Darkblue',    'SeaGreen3'],
