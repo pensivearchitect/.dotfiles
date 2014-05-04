@@ -193,8 +193,6 @@
 (setq comment-column 0)
 (setq fill-column 0)
 (setq shm-program-name "/Users/joshua/emacs/structured-haskell-mode/dist/build/structured-haskell-mode/structured-haskell-mode")
-(set-face-background 'shm-current-face "#eee8d5")
-(set-face-background 'shm-quarantine-face "lemonchiffon")
 
 (evil-mode 1)
 ; (load-theme 'base16-default t)
