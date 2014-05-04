@@ -234,7 +234,7 @@ if executable('ag')
 endif
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-" nnoremap <c-p> :Unite file_rec/async -start-insert <cr> 
+nnoremap <c-p> :Unite file_rec/async -start-insert <cr> 
 " So mind blowinly awesome that this is Shamelessly(tm) stolen from 
 " https://gist.github.com/sjl/3762227
 " Allows for surround.vim functionality, but from anywhere on the line
@@ -279,8 +279,8 @@ if has('gui_running')
     set macmeta
     macmenu &File.New\ Tab key=<nop>
     let g:UltiSnipsExpandTrigger='<C-CR>'
-    map  <C-p> <Plug>PeepOpen
-   " imap  <C-p><C-C><Plug>PeepOpen
+
+    " imap  <C-p><C-C><Plug>PeepOpen
     " cmap <C-p> <C-C><Plug>PeepOpen
     " vmap <C-p> <C-C><Plug>PeepOpen
 
