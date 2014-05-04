@@ -247,3 +247,8 @@
 (add-hook 'wl-biff-notify-hook
           (lambda()
             (wl-popup "Wanderlust" "You have new mail")))
+
+(require 'compile)
+(add-to-list 'compilation-error-regexp-alist-alist
+         '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+(add-to-list 'compilation-error-regexp-alist 'kibit)
