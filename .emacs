@@ -177,7 +177,7 @@
 (setq backup-directory-alist '(("." . "~/.saves")))
 (setq backup-by-copying t)
 (setq auto-save-default nil)
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program "/usr/local/bin/clisp")
 (setq custom-file "~/.emacs-custom.el")
 (setq tramp-default-method "ssh")
 (setq lintnode-location "~/.emacs.d/personal/lintnode")
