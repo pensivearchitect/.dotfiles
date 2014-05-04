@@ -179,15 +179,16 @@ let g:rbpt_colorpairs = [
       \ ['red',         'firebrick3'],
       \ ]
 " Ruby/Rails Setup
-autocmd FileType ruby set omnifunc=rubycomplete#Complete
+" autocmd FileType ruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby let g:rubycomplete_buffer_loading=1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby let g:rubycomplete_classes_in_global=1
 autocmd filetype ruby let g:rubycomplete_use_bundler = 1
-autocmd FileType ruby let g:rubycomplete_include_object = 1
-autocmd FileType ruby let g:rubycomplete_include_objectspace = 1
-autocmd Filetype ruby let g:EclimCompletionMethod = 'omnifunc'
-autocmd Filetype java let g:EclimCompletionMethod = 'omnifunc'
+autocmd FileType ruby  let g:rubycomplete_include_object = 1
+autocmd FileType ruby  let g:rubycomplete_include_objectspace = 1
+
+" Eclim
+autocmd Filetype ruby  let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype scala let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype java nnoremap <leader> c :Mvn compile
 " Hackage
