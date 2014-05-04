@@ -278,6 +278,7 @@ if has('gui_running')
     set guioptions+=c
     set macmeta
     macmenu &File.New\ Tab key=<nop>
+    let g:UltiSnipsExpandTrigger='<C-CR>'
     map  <C-p> <Plug>PeepOpen
    " imap  <C-p><C-C><Plug>PeepOpen
     " cmap <C-p> <C-C><Plug>PeepOpen
