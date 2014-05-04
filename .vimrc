@@ -213,6 +213,8 @@ autocmd Filetype javascript let g:tern_show_argument_hints='on_move'
 " Make NERDTree behave properly 
 " Remappings
 nmap <F2> :TagbarToggle <cr>
+nnoremap <F1> :NERDTreeToggle <cr>
+nnoremap <F3> :NERDTreeToggle <cr> :TagbarToggle <cr>
 inoremap <D-Enter> <Esc>o
 " map <leader>p :call VimuxRunCommand("pry")<cr>
 function! VimuxSlime()
@@ -273,6 +275,7 @@ if has('gui_running')
   colorscheme base16-default
   if has("gui_macvim")
     set guioptions+=c
+    set macmeta
     macmenu &File.New\ Tab key=<nop>
     map  <C-p> <Plug>PeepOpen
    " imap  <C-p><C-C><Plug>PeepOpen
