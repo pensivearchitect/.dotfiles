@@ -1,10 +1,12 @@
 ;;; -*- lexical-binding: t -*-
 (require 'package)
 (require 'cask "~/.cask/cask.el")
-(add-to-list 'package-archives 
-             '("marmalade" . "http://marmalade-repo.org/packages/")
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(setq package-archives 
+             '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("marmalade" . "http://marmalade-repo.org/packages/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
 (add-to-list 'load-path "~/.emacs.d/el-get")
+(add-to-list 'load-path "~/emacs/irony-mode/elisp")
 ;; Keeping these at top due to conflicts
 (cask-initialize)
 (package-initialize)
@@ -19,12 +21,34 @@
 (require 'cedit)
 (require 'clj-refactor)
 (require 'shm "~/emacs/structured-haskell-mode/elisp/shm.el")
+(require 'rainbow-mode "~/emacs/rainbow-mode.el")
 (require 'git-gutter-fringe+)
 (require 'bundler)
+(require 'powerline)
 (require 'org-mac-iCal)
 (require 'popup)
+(require 'irony)
 (require 'php-extras)
+(require 'dime)
+(require 'ac-c-headers)
+(require 'php-auto-yasnippets "~/emacs/php-auto-yasnippets/php-auto-yasnippets.el")
+(setq php-auto-yasnippet-php-program "~/emacs/php-auto-yasnippets/Create-PHP-YASnippet.php")
+(dime-setup '(dime-dylan dime-repl dime-compiler-notes-tree))
+(setq dime-dylan-implementations
+      '((opendylan ("~/source/opendylan-2013.2/bin/dswank")
+                   :env ("OPEN_DYLAN_USER_REGISTRIES=~/source/opendylan-2013.2/sources/registry"))))
+
+;(require 'epc)
+;(defvar epc-server (epc:start-epc "python" '("~/emacs/epc-server.py")))
+;(deferred:$
+;  (epc:call-deferred epc-server 'echo '(10))
+;  (deferred:nextc it
+;    (lambda (x) (message "Return : %S" x))))
+
+;(message "Return : %S" (epc:call-sync epc-server 'echo '(10 40)))
+;(require 'webkit "~/emacs/webkit.el")
 (require 'auto-complete-config)
+
 (defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
     (popup-menu*
@@ -51,21 +75,28 @@
 ;(el-get 'sync)
 
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+(add-hook 'c-mode-hook 'my-c-hooks)
 (add-hook 'c-mode-hook
           (lambda ()
             (add-to-list 'ac-sources 'ac-source-c-headers)
             (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
 (add-hook 'clojure-mode-hook (lambda ()
-                               (clj-refactor-mode 1)
-                               ))
+                               (clj-refactor-mode 1))
+(defun kibit ()
+  (interactive)
+  (compile "lein kibit"))
+
+(defun kibit-current-file ()
+  (interactive)
+  (compile (concat "lein kibit " buffer-file-name))))
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-hook 'js2-mode-hook 'flymake-jslint-load)
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
+;; (eval-after-load 'tern
+;;   '(progn
+;;      (require 'tern-auto-complete)
+;;      (tern-ac-setup)))
 (eval-after-load "ruby-mode"
   '(add-hook 'ruby-mode-hook 'ruby-electric-mode))
 (add-hook 'haskell-mode-hook 'structured-haskell-mode)
@@ -81,7 +112,11 @@
    nil `(("(\\(lambda\\>\\)"
           (0 (progn (compose-region (match-beginning 1) (match-end 1)
                                     ,(make-char 'greek-iso8859-7 107))))))))
-
+(defun my-c-hooks ()
+  (yas/minor-mode-on)
+  (auto-complete-mode 1)
+  (when (member major-mode irony-known-modes)
+    (irony-mode 1)))
 
 ;;; define global mode agnostic keybindings
 (global-set-key "\C-c\C-m" 'execute-extended-command)
@@ -105,7 +140,9 @@
   '(define-key inf-ruby-mode-map (kbd "tab") 'auto-complete))
 (eval-after-load "php-mode"
   '(progn
-     (define-key php-mode-map (kbd "\C-c\C-f") 'cedit-wrap-brace)
+;     (define-key php-mode-map (kbd "\C-c\C-f") 'cedit-wrap-brace)
+;     (define-key php-mode-map (kbd "\C-c\C-h") 'cedit-up-block-backward)
+;     (define-key php-mode-map (kbd "\C-c\C-l") 'cedit-up-block-forward)
      ))
 (eval-after-load "haskell-mode"
   '(progn
@@ -140,7 +177,7 @@
 (setq backup-directory-alist '(("." . "~/.saves")))
 (setq backup-by-copying t)
 (setq auto-save-default nil)
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program "/usr/local/bin/clisp")
 (setq custom-file "~/.emacs-custom.el")
 (setq tramp-default-method "ssh")
 (setq lintnode-location "~/.emacs.d/personal/lintnode")
@@ -166,17 +203,22 @@
 (setq projectile-rails-expand-snippet nil)
 (setq comment-column 0)
 (setq fill-column 0)
+(setq multi-term-program "/bin/bash")
 (setq shm-program-name "/Users/joshua/emacs/structured-haskell-mode/dist/build/structured-haskell-mode/structured-haskell-mode")
-(set-face-background 'shm-current-face "#eee8d5")
-(set-face-background 'shm-quarantine-face "lemonchiffon")
 
+(defun load-solarized() 
+  (load-theme 'solarized-light t)
+(set-face-background 'shm-current-face "#eee8d5")
+(set-face-background 'shm-quarantine-face "lemonchiffon")) 
 (evil-mode 1)
-; (load-theme 'base16-default t)
-(load-theme 'solarized-light t)
-; (load-theme 'monokai t) 
+(load-solarized)
+;; (load-theme 'monokai t)
+;(load-theme 'base16-default t) 
+;(load-theme 'sanityinc-tomorrow-bright t)
 (ac-config-default)
 (global-auto-complete-mode t)
 (ido-mode t)
+(irony-enable 'ac)
 (ido-everywhere t)
 (yas-global-mode t)
 (ac-config-default)
@@ -189,9 +231,11 @@
 (global-semantic-highlight-func-mode t)
 (global-semantic-show-unmatched-syntax-mode t)
 (bash-completion-setup)
-; (smex-initialize)
+(smex-initialize)
 (pretty-lambdas)
 (global-rbenv-mode)
+(windmove-default-keybindings)
+(powerline-center-theme)
 
 (defun wl-popup (title msg)
   (interactive)
@@ -204,3 +248,8 @@
 (add-hook 'wl-biff-notify-hook
           (lambda()
             (wl-popup "Wanderlust" "You have new mail")))
+
+(require 'compile)
+(add-to-list 'compilation-error-regexp-alist-alist
+         '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+(add-to-list 'compilation-error-regexp-alist 'kibit)
