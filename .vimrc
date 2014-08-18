@@ -235,7 +235,7 @@ nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
 nnoremap k gk
 nnoremap ]j :tabnext <cr>
-nnoremap ]j :tabprevious <cr>
+nnoremap ]k :tabprevious <cr>
 nnoremap <leader>j :tabprevious <cr>
 nnoremap <leader>k :tabnext <cr>
 nnoremap gsh :wincmd h <cr>
