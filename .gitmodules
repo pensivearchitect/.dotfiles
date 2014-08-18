@@ -1,0 +1,30 @@
+[submodule "vendor/irony-mode"]
+	path = vendor/irony-mode
+	url = https://github.com/Sarcasm/irony-mode
+[submodule "vendor/robe"]
+	path = vendor/robe
+	url = https://github.com/dgutov/robe
+[submodule "vendor/el-get"]
+	path = vendor/el-get
+	url = https://github.com/dimitri/el-get
+[submodule "emacs/vendor/el-get"]
+	path = emacs/vendor/el-get
+	url = https://github.com/dimitri/el-get
+[submodule "emacs/vendor/robe"]
+	path = emacs/vendor/robe
+	url = https://github.com/dgutov/robe
+[submodule "emacs/vendor/irony-mode"]
+	path = emacs/vendor/irony-mode
+	url = https://github.com/Sarcasm/irony-mode
+[submodule "emacs/vendor/evil-nerd-commenter"]
+	path = emacs/vendor/evil-nerd-commenter
+	url = https://github.com/redguardtoo/evil-nerd-commenter
+[submodule "emacs/vendor/emacs-eclim"]
+	path = emacs/vendor/emacs-eclim
+	url = https://github.com/dgutov/emacs-eclim
+[submodule "emacs/vendor/yasmate"]
+	path = emacs/vendor/yasmate
+	url = https://github.com/capitaomorte/yasmate
+[submodule "emacs/vendor/yasnippet-snippets"]
+	path = emacs/vendor/yasnippet-snippets
+	url = https://github.com/AndreaCrotti/yasnippet-snippets
