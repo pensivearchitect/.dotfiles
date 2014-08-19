@@ -5,7 +5,6 @@ call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 syntax on
 filetype plugin indent on
-call vundle#rc()
 set nocompatible
 set ai
 set copyindent
@@ -62,88 +61,7 @@ hi Normal ctermfg=white ctermbg=black
 " colorscheme tomorrow-night-bright
 let mapleader = " "
 " Calling plugin managers
-set rtp+=~/.vim/bundle/vundle
 highlight Pmenu ctermfg=0, ctermbg=15, guibg=black
-" Installed Bundles, the true sign of an experienced vim addict^W user
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-rake'
-Bundle 'pangloss/vim-javascript'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'tpope/vim-haml'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'tpope/vim-bundler'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'juvenn/mustache.vim'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'dsawardekar/portkey'
-Bundle 'dsawardekar/ember.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/rainbow_parentheses.vim'
-" Bundle 'scrooloose/syntastic'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-rbenv'
-Bundle 'Raimondi/delimitMate'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/unite.vim'
-Bundle 'bitc/vim-hdevtools'
-Bundle 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'heartsentwined/vim-ember-script'
-Bundle 'chriskempson/base16-vim'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'Blackrush/vim-gocode'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'm2mdas/phpcomplete-extended'
-Bundle 'mattn/emmet-vim'
-" Bundle 'SirVer/ultisnips"
-Bundle 'reedes/vim-pencil'
-Bundle 'reedes/vim-wordy'
-Bundle 'reedes/vim-lexical'
-Bundle 'tpope/vim-classpath'
-Bundle 'tpope/vim-rsi.git'
-Bundle 'tpope/vim-vinegar'
-Bundle 'godlygeek/tabular'
-Bundle 'tpope/timl'
-Bundle 'slim-template/vim-slim'
-Bundle 'jpalardy/vim-slime'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'rking/ag.vim'
-Bundle 'quanganhdo/grb256'
-Bundle 'benmills/vimux'
-Bundle 'jingweno/vimux-zeus'
-Bundle 'jgdavey/vim-turbux'
-Bundle 'bling/vim-airline'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'Keithbsmiley/rspec.vim'
-Bundle 'ck3g/vim-change-hash-syntax'
-Bundle 'kien/tabman.vim'
-Bundle 'tpope/vim-obsession'
-Plugin 'noprompt/vim-yardoc'
-Plugin 'thoughtbot/vim-rspec'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
