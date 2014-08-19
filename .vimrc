@@ -238,6 +238,8 @@ if has("gui_running")
 else
   colorscheme base16-monokai
 endif
+let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 function! ResCur()
