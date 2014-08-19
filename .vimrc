@@ -159,7 +159,13 @@ call unite#custom#profile('files', 'update-time', 10)
 call unite#filters#matcher_default#use(["matcher_fuzzy"])
 nmap <leader>g g;
 nmap <leader>s :A<cr>
-nmap <cr> :call VimuxRunCommand("clear; zeus rspec " . rails#buffer().test_file())<cr>
+if glob(".zeus.sock") != ""
+  nmap <cr> :call VimuxRunCommand("clear; zeus rspec " . rails#buffer().test_file())<cr>
+else
+  nmap <cr> :call VimuxRunCommand("clear; rspec " . rails#buffer().test_file())<cr>
+
+endif
+map <leader>rt <Plug>SendTestToTmux
 nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
 nnoremap k gk
