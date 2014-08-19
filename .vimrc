@@ -85,6 +85,7 @@ let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
+let g:unite_source_grep_max_candidates = 1000
 let g:bufferline_echo = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_refresh_always = 1
@@ -146,6 +147,16 @@ au Filetype haskell nnoremap <buffer> <silent> <leader>c :HdevtoolsClear<cr>
 autocmd Filetype javascript let g:tern_show_argument_hints="on_move"
 au      BufNewFile, BufRead *.es6 set filetype=javascript
 " |Remappings|
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ follow
+  set grepformat=%f:%1:%c5m
+  let g:unite_source_grep_command="ag"
+  let g:unite_source_grep_default_opts="--nocolor --nogroup -S -C4"
+  let g:unite_source_grep_recursive_opt=""
+
+endif
+call unite#custom#profile('files', 'update-time', 10)
+call unite#filters#matcher_default#use(["matcher_fuzzy"])
 nmap <leader>g g;
 nmap <leader>s :A<cr>
 nmap <cr> :call VimuxRunCommand("clear; zeus rspec `pwd`/" . bufname("%"))<cr>
@@ -188,15 +199,6 @@ function! VimuxSlime()
   call VimuxSendText(@v)
   call VimuxSendKeys("Enter")
 endfunction
-if executable("ag")
-  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ follow
-  set grepformat=%f:%1:%c5m
-  let g:unite_source_grep_command="ag"
-  let g:unite_source_grep_default_opts="--nocolor --nogroup -S -C4"
-  let g:unite_source_grep_recursive_opt=""
-
-endif
-call unite#filters#matcher_default#use(["matcher_fuzzy"])
 " Allows for surround.vim functionality, but from anywhere on the line
 function! s:NextTextObject(motion, dir)
   let c = nr2char(getchar())
