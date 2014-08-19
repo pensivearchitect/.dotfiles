@@ -165,7 +165,6 @@ else
   nmap <cr> :call VimuxRunCommand("clear; rspec " . rails#buffer().test_file())<cr>
 
 endif
-map <leader>rt <Plug>SendTestToTmux
 nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
 nnoremap k gk
