@@ -160,7 +160,6 @@ call unite#filters#matcher_default#use(["matcher_fuzzy"])
 nmap <leader>g g;
 nmap <leader>s :A<cr>
 nmap <cr> :call VimuxRunCommand("clear; zeus rspec " . rails#buffer().test_file())<cr>
-map <leader>rt <Plug>SendTestToTmux
 nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
 nnoremap k gk
