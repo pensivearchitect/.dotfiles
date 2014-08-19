@@ -163,7 +163,6 @@ if glob(".zeus.sock") != ""
   nmap <cr> :call VimuxRunCommand("clear; zeus rspec " . rails#buffer().test_file())<cr>
 else
   nmap <cr> :call VimuxRunCommand("clear; rspec " . rails#buffer().test_file())<cr>
-
 endif
 nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
