@@ -250,12 +250,6 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init()
-augroup END
 nnoremap gvd :Gdiff
 nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
 let g:slime_target = "tmux"
