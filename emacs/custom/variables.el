@@ -43,5 +43,7 @@
                    :env ("OPEN_DYLAN_USER_REGISTRIES=~/source/opendylan-2013.2/sources/registry"))))
 (setq yas/prompt-functions '(yas/popup-isearch-prompt yas/no-prompt))
 (setq ag-highlight-search t)
-(provide 'variables)
+(setq display-time-format " %I:%M")
+(setq shm-program-name "/home/josh/structured-haskell-mode/dist/build/structured-haskell-mode/structured-haskell-mode")
 
+(provide 'variables)
