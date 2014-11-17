@@ -23,6 +23,6 @@
 (global-fixmee-mode 1)
 (set-default-themes "Inconsolata")
 ;; (set-default-themes "Fantasque Sans Mono")
-(load-theme 'ir-black t)
+(load-theme 'waher t)
 
 (provide 'globals)

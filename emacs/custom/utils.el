@@ -1,3 +1,6 @@
+;; Various utils that I felt should be put here,
+;; can also be conceptualized as the misc junk drawer
+;; but this feels more important than that
 (defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
     (popup-menu*
@@ -48,13 +51,19 @@
           (set-buffer-modified-p nil))))))
 (dime-setup '(dime-dylan dime-repl dime-compiler-notes-tree))
 
-;; Consider moving this into a theme specific file Will probably
+;; Consider moving this into a theme specific file. Will probably
 ;; pursue that once I have enough customizations to warrant my own
-;; theme
+;; theme aka never
 (defun set-default-themes (font)
-  (set-face-attribute 'default nil :family font :height 130 :background "#000000")
-  (set-face-attribute 'font-lock-comment-face nil :foreground "#2AA198")
-  (set-face-attribute 'font-lock-doc-face nil :foreground "#2AA161")
-  (set-face-attribute 'font-lock-string-face nil :foreground "#2AA161"))
-
+  ;; (set-face-attribute 'default nil :family font :height 130 :background "#000000")
+  (set-face-attribute 'default nil :family font :height 130)
+  ;; (set-face-attribute 'font-lock-comment-face nil :foreground "#2AA198")
+  ;; (set-face-attribute 'font-lock-doc-face nil :foreground "#2AA161")
+  ;; (set-face-attribute 'font-lock-string-face nil :foreground "#2AA161")
+  )
+;; I'd like to use #' syntax but for SOME REASON IT THROWS AN ERROR
+;; this is the simple and lazy solution
+(add-hook 'prog-mode-hook
+          (lambda ()
+            ((rainbow-identifiers-mode) (rainbow-delimiters-mode))))
 (provide 'utils)
