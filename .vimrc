@@ -2,9 +2,10 @@
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+set rtp+=~/.vim/bundle/Vundle.vim
 syntax on
 filetype plugin indent on
+call vundle#rc()
 set nocompatible
 set ai
 set copyindent
@@ -58,10 +59,91 @@ set background=dark
 set t_Co=256
 set viminfo="10,\"100,:20,%,n~/.viminfo"
 hi Normal ctermfg=white ctermbg=black
-" colorscheme tomorrow-night-bright
+colorscheme base16-default
 let mapleader = " "
 " Calling plugin managers
-highlight Pmenu ctermfg=0, ctermbg=15, guibg=black
+" Installed Bundles, the true sign of an experienced vim addict^W user
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-rake'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'tpope/vim-haml'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'tpope/vim-bundler'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'juvenn/mustache.vim'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'vim-scripts/dbext.vim'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'dsawardekar/portkey'
+Bundle 'dsawardekar/ember.vim'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'kien/rainbow_parentheses.vim'
+" Bundle 'scrooloose/syntastic'
+Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-rbenv'
+Bundle 'Raimondi/delimitMate'
+Bundle 'othree/javascript-libraries-syntax.vim'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/unite.vim'
+Bundle 'bitc/vim-hdevtools'
+Bundle 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle 'lukerandall/haskellmode-vim'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'heartsentwined/vim-ember-script'
+Bundle 'chriskempson/base16-vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'Blackrush/vim-gocode'
+Bundle 'Shougo/vimshell.vim'
+Bundle 'm2mdas/phpcomplete-extended'
+Bundle 'mattn/emmet-vim'
+" Bundle 'SirVer/ultisnips"
+Bundle 'reedes/vim-pencil'
+Bundle 'reedes/vim-wordy'
+Bundle 'reedes/vim-lexical'
+Bundle 'tpope/vim-classpath'
+Bundle 'tpope/vim-rsi.git'
+Bundle 'tpope/vim-vinegar'
+Bundle 'godlygeek/tabular'
+Bundle 'tpope/timl'
+Bundle 'slim-template/vim-slim'
+Bundle 'jpalardy/vim-slime'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'rking/ag.vim'
+Bundle 'quanganhdo/grb256'
+Bundle 'benmills/vimux'
+Bundle 'jingweno/vimux-zeus'
+Bundle 'jgdavey/vim-turbux'
+" Bundle 'bling/vim-airline'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'ck3g/vim-change-hash-syntax'
+Bundle 'kien/tabman.vim'
+Bundle 'tpope/vim-obsession'
+Plugin 'noprompt/vim-yardoc'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-projectionist'
+Plugin 'heartsentwined/vim-emblem'
+Plugin 'wting/rust.vim'
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'walm/jshint.vim'
+Plugin 'Yggdroot/indentLine'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
@@ -80,12 +162,10 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 highlight SyntasticErrorSign ctermfg=1
 let g:syntastic_always_populate_loc_list = 1
-let g:nerdtree_tabs_open_on_gui_startup = 0
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
-let g:unite_source_grep_max_candidates = 1000
 let g:bufferline_echo = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_refresh_always = 1
@@ -93,9 +173,9 @@ let g:ycm_collect_identifiers_from_comments_and_string = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" let g:airline_powerline_fonts = 1
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
 let VimuxUseNearest = 1
 let g:rspec_command = "compiler rspec | set makeprg=zeus | Make rspec {spec}"
 let g:tabman_number = 0
@@ -117,10 +197,10 @@ let g:rbpt_colorpairs = [
       \ ["darkred",     "DarkOrchid3"],
       \ ["red",         "firebrick3"],
       \ ]
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.space = "\ua0"
 " |Filetype| settings
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
 autocmd FileType ruby let g:rubycomplete_buffer_loading=1
@@ -147,23 +227,9 @@ au Filetype haskell nnoremap <buffer> <silent> <leader>c :HdevtoolsClear<cr>
 autocmd Filetype javascript let g:tern_show_argument_hints="on_move"
 au      BufNewFile, BufRead *.es6 set filetype=javascript
 " |Remappings|
-if executable("ag")
-  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ follow
-  set grepformat=%f:%1:%c5m
-  let g:unite_source_grep_command="ag"
-  let g:unite_source_grep_default_opts="--nocolor --nogroup -S -C4"
-  let g:unite_source_grep_recursive_opt=""
-
-endif
-call unite#custom#profile('files', 'update-time', 10)
-call unite#filters#matcher_default#use(["matcher_fuzzy"])
 nmap <leader>g g;
 nmap <leader>s :A<cr>
-if glob(".zeus.sock") != ""
-  nmap <cr> :call VimuxRunCommand("clear; zeus rspec " . rails#buffer().test_file())<cr>
-else
-  nmap <cr> :call VimuxRunCommand("clear; rspec " . rails#buffer().test_file())<cr>
-endif
+" nmap <cr> :call VimuxRunCommand("clear; zeus rspec `pwd`/" . bufname("%"))<cr>
 nnoremap gld :%s/\s\+$// <cr>
 nnoremap j gj
 nnoremap k gk
@@ -175,8 +241,7 @@ nnoremap gsh :wincmd h <cr>
 nnoremap gsl :wincmd l <cr>
 nnoremap gst :Tabularize /
 nnoremap chs :ChangeHashSyntax <cr>
-nnoremap <F1> :NERDTreeToggle <cr>
-nnoremap <F3> :NERDTreeToggle <cr> :TagbarToggle <cr>
+nnoremap <F3> :TMToggle <cr> :TagbarToggle <cr>
 nnoremap <F2> :TMToggle <cr>
 nnoremap <leader>f :UniteWithProjectDir file_rec/async -start-insert<cr>
 nnoremap <leader>t :UniteWithProjectDir file_rec/async -start-insert -auto-preview<cr>
@@ -203,6 +268,15 @@ function! VimuxSlime()
   call VimuxSendText(@v)
   call VimuxSendKeys("Enter")
 endfunction
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ follow
+  set grepformat=%f:%1:%c5m
+  let g:unite_source_grep_command="ag"
+  let g:unite_source_grep_default_opts="--nocolor --nogroup -S -C4"
+  let g:unite_source_grep_recursive_opt=""
+
+endif
+call unite#filters#matcher_default#use(["matcher_fuzzy"])
 " Allows for surround.vim functionality, but from anywhere on the line
 function! s:NextTextObject(motion, dir)
   let c = nr2char(getchar())
@@ -240,10 +314,8 @@ if has("gui_running")
     " macmenu &File.New\ Tab key=<D-S-t>
   endif
 else
-  colorscheme base16-monokai
+  colorscheme base16-default
 endif
-let g:UltiSnipsExpandTrigger="<C-k>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 function! ResCur()
@@ -258,6 +330,12 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
+augroup lexical
+  autocmd!
+  autocmd FileType markdown call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init()
+augroup END
 nnoremap gvd :Gdiff
 nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
 let g:slime_target = "tmux"
@@ -268,3 +346,6 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
+highlight Pmenu ctermbg=238, guibg=black
+hi StatusLine ctermbg=black ctermfg=white
+hi VertSplit ctermbg=black ctermfg=black
