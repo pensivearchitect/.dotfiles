@@ -1,0 +1,4 @@
+feh --bg-fill ~/Dropbox/Wallpapers/brook.jpg
+setxkbmap -option ctrl:swapcaps
+synclient PalmDetect=1
+xcape -e 'Control_L=Escape'
