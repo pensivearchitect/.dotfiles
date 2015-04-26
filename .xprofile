@@ -1,4 +1,7 @@
-feh --bg-fill ~/Dropbox/Wallpapers/brook.jpg
+#!/bin/sh
+# feh --bg-fill ~/Dropbox/Wallpapers/
 setxkbmap -option ctrl:swapcaps
 synclient PalmDetect=1
 xcape -e 'Control_L=Escape'
+xcape -e 'Shift_L=0x028'
+xcape -e 'Shift_R=0x029'
