@@ -54,12 +54,14 @@ set wildignorecase
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set hidden
 " Color Settings
 set background=dark
 set t_Co=256
 set viminfo="10,\"100,:20,%,n~/.viminfo"
 hi Normal ctermfg=white ctermbg=black
-colorscheme base16-default
+let base16colorspace=256
+colorscheme base16-bright
 let mapleader = " "
 " Calling plugin managers
 " Installed Bundles, the true sign of an experienced vim addict^W user
@@ -111,7 +113,7 @@ Bundle 'Blackrush/vim-gocode'
 Bundle 'Shougo/vimshell.vim'
 Bundle 'm2mdas/phpcomplete-extended'
 Bundle 'mattn/emmet-vim'
-" Bundle 'SirVer/ultisnips"
+Bundle 'SirVer/ultisnips'
 Bundle 'reedes/vim-pencil'
 Bundle 'reedes/vim-wordy'
 Bundle 'reedes/vim-lexical'
@@ -127,23 +129,33 @@ Bundle 'rking/ag.vim'
 Bundle 'quanganhdo/grb256'
 Bundle 'benmills/vimux'
 Bundle 'jingweno/vimux-zeus'
-Bundle 'jgdavey/vim-turbux'
-" Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'ck3g/vim-change-hash-syntax'
 Bundle 'kien/tabman.vim'
 Bundle 'tpope/vim-obsession'
 Plugin 'noprompt/vim-yardoc'
-Plugin 'thoughtbot/vim-rspec'
+" Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-projectionist'
 Plugin 'heartsentwined/vim-emblem'
 Plugin 'wting/rust.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'walm/jshint.vim'
 Plugin 'Yggdroot/indentLine'
+Bundle 'gabebw/vim-spec-runner'
+Bundle 'skalnik/vim-vroom'
+Plugin 'phildawes/racer'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'szw/vim-ctrlspace'
+Plugin 'fatih/vim-go'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'osyo-manga/vim-monster'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 't9md/vim-ruby-xmpfilter'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
@@ -152,6 +164,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 runtime macros/matchit.vim
+let g:racer_cmd = "~/src/racer/target/release/racer"
 let b:surround_indent = 1
 let g:syntastic_cpp_compiler_options = " -std=c++11"
 let g:syntastic_echo_current_error=1
@@ -173,12 +186,15 @@ let g:ycm_collect_identifiers_from_comments_and_string = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-" let g:airline_powerline_fonts = 1
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:ctrl_space_use_tabline = 1
+let g:airline#extensions#tabline#enabled = 1
 let VimuxUseNearest = 1
 let g:rspec_command = "compiler rspec | set makeprg=zeus | Make rspec {spec}"
 let g:tabman_number = 0
+let g:spec_runner_dispatcher = '!echo "{command}" && {command}'
 let g:rbpt_colorpairs = [
       \ ["brown",       "RoyalBlue3"],
       \ ["Darkblue",    "SeaGreen3"],
@@ -203,6 +219,7 @@ let g:rbpt_colorpairs = [
 " let g:airline_symbols.space = "\ua0"
 " |Filetype| settings
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
+autocmd BufWritePre * :%s/\s\+$//e
 autocmd FileType ruby let g:rubycomplete_buffer_loading=1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby let g:rubycomplete_classes_in_global=1
@@ -212,6 +229,7 @@ autocmd FileType ruby  let g:rubycomplete_include_objectspace = 1
 autocmd Filetype ruby  let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype scala let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype php   let g:EclimCompletionMethod = 'omnifunc'
+nnoremap <cr> :Dispatch<cr>
 let b:EclimPhpHtmlValidate = 1
 let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype java nnoremap <leader> t :Mvn compile
@@ -249,7 +267,7 @@ nnoremap zO zCzO
 inoremap <D-Enter> <Esc>o
 inoremap {<cr> {<cr>}<c-o>O<tab>
 inoremap [<cr> [<cr>]<c-o>O<tab>
-inoremap (<cr> (<cr>)<c-o>O<tab>)]}
+inoremap (<cr> (<cr>)<c-o>O<tab>
 " https://gist.github.com/sjl/3762227
 onoremap an :<c-u>call <SID>NextTextObject("a", "f")<cr>
 xnoremap an :<c-u>call <SID>NextTextObject("a", "f")<cr>
@@ -263,6 +281,7 @@ xnoremap il :<c-u>call <SID>NextTextObject("i", "F")<cr>
 map <leader>p :call VimuxRunCommand("rails console")<cr>
 vmap <leader>v "vy :call VimuxSlime()<cr>
 nmap <leader>v vip<localleader>vs<cr>
+" let g:ycm_key_invoke_completion = '<C-S>'
 " |Helpers|
 function! VimuxSlime()
   call VimuxSendText(@v)
@@ -297,10 +316,11 @@ if has("gui_running")
   set go-=L
   set go-=r
   set go-=R
+  set guioptions-=e
   " set guicursor=n-c:ver30-iCursor
   " set guicursor+=v:ver30-iCursor
   " set guicursor+=i-ci:ver30-iCursor
-  colorscheme base16-default
+  colorscheme base16-bright
   if has("gui_macvim")
     set guioptions+=c
     set macmeta
@@ -314,7 +334,7 @@ if has("gui_running")
     " macmenu &File.New\ Tab key=<D-S-t>
   endif
 else
-  colorscheme base16-default
+  " colorscheme t
 endif
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
@@ -339,13 +359,18 @@ augroup END
 nnoremap gvd :Gdiff
 nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
 let g:slime_target = "tmux"
-augroup line_return
-  au!
-  au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
+" augroup line_return
+"   au!
+"   au BufReadPost *
+"         \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"         \     execute 'normal! g`"zvzz' |
+"         \ endif
+" augroup END
 highlight Pmenu ctermbg=238, guibg=black
 hi StatusLine ctermbg=black ctermfg=white
 hi VertSplit ctermbg=black ctermfg=black
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
