@@ -16,43 +16,41 @@
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
      ;; --------------------------------------------------------
+     dash
+     ruby-on-rails
+     rust
+     osx
+     sql
+     yaml
+     restclient
+     lua
      auto-completion
-     ;; better-defaults
-     (git :variables
-          git-gutter-use-fringe t
-          git-magit-status-fullscreen t
-          git-enable-github-support t
-          git-gutter-use-fringe t
-          )
+     emacs-lisp
+     shell
      markdown
-     josh
      org
      syntax-checking
-     auctex
-     finance
      evil-commentary
-     config
-     slime
      syntax-checking
      themes-megapack
      c-c++
      clojure
-     csharp
-     erlang-elixir
+     erlang
+     elixir
      extra-langs
-     haskell
-     go
-     fsharp
      html
      javascript
-     ocaml
-     racket
+     java
      ruby
      scala
      shell-scripts
+     ocaml
      tmux
      dockerfile
+     git
+     github
      )
+   dotspacemacs-additional-packages '(llvm-mode rtags projectile-rails dash-at-point quickrun mmm-mode editorconfig js2-refactor rspec-mode base16-theme)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -67,6 +65,7 @@ before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ruby-enable-ruby-on-rails-support t
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
@@ -87,8 +86,12 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
+   dotspacemacs-themes '(
+                         base16-default-dark
                          solarized-light
+                         monokai
+                         spacemacs-dark
+                         spacemacs-light
                          solarized-dark
                          leuven
                          zenburn)
@@ -97,7 +100,7 @@ before layers configuration."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 30
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -171,10 +174,12 @@ before layers configuration."
   (global-set-key "\C-x\C-k" 'backwards-kill-line)
   )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (require 'editorconfig)
+  (require 'flycheck)
   (setq powerline-default-separator 'arrow-fade)
   (evil-ex-define-cmd "Rcontroller" 'projectile-rails-find-current-controller)
   (evil-ex-define-cmd "Rmodel" 'projectile-rails-find-current-model)
@@ -196,19 +201,60 @@ layers configuration."
   (evil-ex-define-cmd "Rroutes" 'projectile-rails-goto-routes)
   (evil-ex-define-cmd "Rspechelper" 'projectile-rails-goto-spec-helper)
   (evil-ex-define-cmd "Rgemfile" 'projectile-rails-goto-gemfile)
-  (evil-define-key 'normal 'enh-ruby-mode-map "<RET>" 'rspec-verify-matching)
+  (evil-leader/set-key "dd" 'dash-at-point)
   (global-hl-line-mode -1)
-  (add-hook 'cider-mode-hook
-            (global-set-key (kbd "C-c C-w")
-              (fset 'eval-clojure-sexp
-                    (lambda (&optional arg)
-                      "Keyboard macro"
-                      (interactive "p")
-                      (push-mark)
-                      (end-of-buffer)
-                      (cider-eval-last-sexp-and-replace)
-                      ))))
+  (defun seeing-is-believing ()
+    "Replace the current region (or the whole buffer, if none) with the output
+of seeing_is_believing."
+    (interactive)
+    (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+          (end (if (region-active-p) (region-end) (point-max)))
+          (origin (point)))
+      (shell-command-on-region beg end "seeing_is_believing" nil 'replace)
+      (goto-char origin))
+    ;; call erm-reset to fix font locks after sib is called
+    (erm-reset))
+  (evil-leader/set-key "oc" 'seeing-is-believing)
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
+  (setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
+  (require 'rspec-mode)
+  (add-hook 'enh-ruby-mode-hook #'rspec-mode)
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (eval-after-load "enh-ruby-mode" '(progn (define-key evil-normal-state-map (kbd "RET") 'rspec-verify-matching)))
+
+  (defun eshell/vi (file)
+    (find-file file))
+  (require 'js2-refactor)
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (setq js2-basic-offset 2)
+  (setq racer-rust-src-path "~/src/rust/src")
+  (setq racer-cmd "~/racer/target/release/racer")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-safe-themes
+   (quote
+    ("99fce0c01e01cb934f373a3e8c3224f80be568c6d9a548975a5cb0a0910f0a60" "3539b3cc5cbba41609117830a79f71309a89782f23c740d4a5b569935f9b7726" "75c0b1d2528f1bce72f53344939da57e290aa34bea79f3a1ee19d6808cb55149" "73ae6088787f6f72ef52f19698b25bc6f0edf47b9e677bf0a85e3a1e8a7a3b17" "9f3a4edb56d094366afed2a9ba3311bbced0f32ca44a47a765d8ef4ce5b8e4ea" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "c1390663960169cd92f58aad44ba3253227d8f715c026438303c09b9fb66cdfb" default)))
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 140 :width normal))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

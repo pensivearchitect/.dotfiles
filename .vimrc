@@ -5,6 +5,7 @@ call pathogen#helptags()
 set rtp+=~/.vim/bundle/Vundle.vim
 syntax on
 filetype plugin indent on
+set viminfo="10,\"100,:20,%,n~/.viminfo"
 call vundle#rc()
 set nocompatible
 set ai
@@ -34,7 +35,7 @@ set laststatus=2
 set tags+=gem.tags
 set tags+=stdlib.tags
 set tags+=tags
-set dictionary+=/Users/home/joshua/.autocomplete_ruby/tags
+" set dictionary+=/Users/home/joshua/.autocomplete_ruby/tags
 set backspace=indent,eol,start
 set autowrite
 set complete=.,w,b,u,t
@@ -58,7 +59,6 @@ set hidden
 " Color Settings
 set background=dark
 set t_Co=256
-set viminfo="10,\"100,:20,%,n~/.viminfo"
 hi Normal ctermfg=white ctermbg=black
 let base16colorspace=256
 colorscheme base16-bright
@@ -83,7 +83,7 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'tpope/vim-bundler'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'juvenn/mustache.vim'
-Bundle 'jelera/vim-javascript-syntax'
+" Bundle 'jelera/vim-javascript-syntax'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kchmck/vim-coffee-script'
@@ -155,7 +155,9 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'osyo-manga/vim-monster'
 Plugin 'endel/vim-github-colorscheme'
-Plugin 't9md/vim-ruby-xmpfilter'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'othree/yajs.vim'
+Plugin 'ensime/ensime-vim'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
@@ -219,6 +221,8 @@ let g:rbpt_colorpairs = [
 " let g:airline_symbols.space = "\ua0"
 " |Filetype| settings
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
+au BufNewFile,BufRead *.es6 setlocal filetype=javascript foldlevel=1
+
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd FileType ruby let g:rubycomplete_buffer_loading=1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
