@@ -16,7 +16,7 @@ myStartupHook = do spawnOn "1:emacs" "emacs"
 
 main = do
   xmonad $ defaultConfig
-    { terminal = "/usr/bin/gnome-terminal"
+    { terminal = "/usr/local/bin/st"
     , modMask = mod1Mask
     , workspaces = myWorkSpaces
     , borderWidth = 0
