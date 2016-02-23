@@ -50,7 +50,8 @@
      git
      github
      )
-   dotspacemacs-additional-packages '(llvm-mode rtags projectile-rails dash-at-point quickrun mmm-mode editorconfig js2-refactor rspec-mode base16-theme)
+   dotspacemacs-additional-packages '(llvm-mode rtags projectile-rails dash-at-point quickrun mmm-mode editorconfig js2-refactor rspec-mode base16-theme
+                                                rustfmt)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -87,9 +88,8 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         base16-default-dark
-                         solarized-light
                          monokai
+                         solarized-light
                          spacemacs-dark
                          spacemacs-light
                          solarized-dark
@@ -99,8 +99,8 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 14
+   dotspacemacs-default-font '("Hack"
+                               :size 24
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -165,6 +165,8 @@ before layers configuration."
    dotspacemacs-default-package-repository nil
    )
   ;; User initialization goes here
+  (add-to-list 'default-frame-alist '(height . 24))
+  (add-to-list 'default-frame-alist '(width . 80))
   (global-set-key "\C-c\C-m" 'execute-extended-command)
   (global-set-key "\C-x\C-m" 'execute-extended-command)
   (global-set-key "\C-w" 'backward-kill-word)
@@ -228,8 +230,6 @@ of seeing_is_believing."
   (require 'js2-refactor)
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (setq js2-basic-offset 2)
-  (setq racer-rust-src-path "~/src/rust/src")
-  (setq racer-cmd "~/racer/target/release/racer")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
