@@ -1,7 +1,5 @@
 " Sane Defaults
 filetype off
-call pathogen#infect()
-call pathogen#helptags()
 set rtp+=~/.vim/bundle/Vundle.vim
 syntax on
 filetype plugin indent on
@@ -61,7 +59,6 @@ set background=dark
 set t_Co=256
 hi Normal ctermfg=white ctermbg=black
 let base16colorspace=256
-colorscheme base16-bright
 let mapleader = " "
 " Calling plugin managers
 " Installed Bundles, the true sign of an experienced vim addict^W user
@@ -158,6 +155,7 @@ Plugin 'endel/vim-github-colorscheme'
 Plugin 'jgdavey/vim-blockle'
 Plugin 'othree/yajs.vim'
 Plugin 'ensime/ensime-vim'
+Plugin 'Chiel92/vim-autoformat'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
@@ -188,6 +186,7 @@ let g:ycm_collect_identifiers_from_comments_and_string = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 0
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -220,6 +219,7 @@ let g:rbpt_colorpairs = [
 " endif
 " let g:airline_symbols.space = "\ua0"
 " |Filetype| settings
+au BufWrite * :Autoformat
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
 au BufNewFile,BufRead *.es6 setlocal filetype=javascript foldlevel=1
 
@@ -236,6 +236,7 @@ autocmd Filetype php   let g:EclimCompletionMethod = 'omnifunc'
 nnoremap <cr> :Dispatch<cr>
 let b:EclimPhpHtmlValidate = 1
 let g:EclimCompletionMethod = 'omnifunc'
+autocmd Filetype c map <f4> :make<cr>
 autocmd Filetype java nnoremap <leader> t :Mvn compile
 autocmd Filetype java nnoremap <leader> p :Mvn package
 autocmd Filetype java nnoremap <leader> e :Mvn eclipse:eclipse
@@ -324,7 +325,6 @@ if has("gui_running")
   " set guicursor=n-c:ver30-iCursor
   " set guicursor+=v:ver30-iCursor
   " set guicursor+=i-ci:ver30-iCursor
-  colorscheme base16-bright
   if has("gui_macvim")
     set guioptions+=c
     set macmeta
@@ -375,6 +375,6 @@ hi StatusLine ctermbg=black ctermfg=white
 hi VertSplit ctermbg=black ctermfg=black
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
+        \| exe "normal! g'\"" | endif
 endif
-
+colorscheme base16-bright
