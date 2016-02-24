@@ -21,3 +21,4 @@ export VISUAL='vim'
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 eval "$(rbenv init -)"
+eval $(keychain --eval --quiet id_rsa)
