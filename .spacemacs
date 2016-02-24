@@ -17,6 +17,7 @@
      ;; Uncomment a layer name and press C-c C-c to install it
      ;; --------------------------------------------------------
      dash
+     typography
      ruby-on-rails
      rust
      osx
@@ -36,6 +37,7 @@
      c-c++
      clojure
      erlang
+     latex
      elixir
      extra-langs
      html
