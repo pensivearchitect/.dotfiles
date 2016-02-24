@@ -156,6 +156,7 @@ Plugin 'jgdavey/vim-blockle'
 Plugin 'othree/yajs.vim'
 Plugin 'ensime/ensime-vim'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'vim-airline/vim-airline-themes'
 " }}} |BundlePlugin|
 " Global Settings
 au FocusLost * silent! wa
@@ -164,6 +165,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 runtime macros/matchit.vim
+let g:airline_theme='base16'
 let g:racer_cmd = "~/src/racer/target/release/racer"
 let b:surround_indent = 1
 let g:syntastic_cpp_compiler_options = " -std=c++11"
@@ -219,7 +221,7 @@ let g:rbpt_colorpairs = [
 " endif
 " let g:airline_symbols.space = "\ua0"
 " |Filetype| settings
-au BufWrite * :Autoformat
+au BufWrite *.rs :Autoformat
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
 au BufNewFile,BufRead *.es6 setlocal filetype=javascript foldlevel=1
 
@@ -377,4 +379,4 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal! g'\"" | endif
 endif
-colorscheme base16-bright
+colorscheme base16-default
