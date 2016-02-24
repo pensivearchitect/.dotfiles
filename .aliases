@@ -13,7 +13,7 @@ alias rr='rails'
 alias rg='rails generate'
 alias rc='rails console'
 alias rs='rails server'
-# alias emacs='emacs -nw'
+alias emacs='emacsclient -ct -a ""'
 
 
 
