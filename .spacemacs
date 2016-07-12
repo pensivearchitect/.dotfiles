@@ -101,8 +101,8 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
-                               :size 24
+   dotspacemacs-default-font '("Fantasque Sans Mono"
+                               :size 32
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -184,7 +184,6 @@ before layers configuration."
 layers configuration."
   (require 'editorconfig)
   (require 'flycheck)
-  (setq powerline-default-separator 'arrow-fade)
   (evil-ex-define-cmd "Rcontroller" 'projectile-rails-find-current-controller)
   (evil-ex-define-cmd "Rmodel" 'projectile-rails-find-current-model)
   (evil-ex-define-cmd "Rview" 'projectile-rails-find-current-view)
@@ -207,31 +206,18 @@ layers configuration."
   (evil-ex-define-cmd "Rgemfile" 'projectile-rails-goto-gemfile)
   (evil-leader/set-key "dd" 'dash-at-point)
   (global-hl-line-mode -1)
-  (defun seeing-is-believing ()
-    "Replace the current region (or the whole buffer, if none) with the output
-of seeing_is_believing."
-    (interactive)
-    (let ((beg (if (region-active-p) (region-beginning) (point-min)))
-          (end (if (region-active-p) (region-end) (point-max)))
-          (origin (point)))
-      (shell-command-on-region beg end "seeing_is_believing" nil 'replace)
-      (goto-char origin))
-    ;; call erm-reset to fix font locks after sib is called
-    (erm-reset))
   (evil-leader/set-key "oc" 'seeing-is-believing)
   (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
   (require 'rspec-mode)
-  (add-hook 'enh-ruby-mode-hook #'rspec-mode)
+  (add-hook 'ruby-mode-hook #'rspec-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (eval-after-load "enh-ruby-mode" '(progn (define-key evil-normal-state-map (kbd "RET") 'rspec-verify-matching)))
-
   (defun eshell/vi (file)
     (find-file file))
   (require 'js2-refactor)
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
-  (setq js2-basic-offset 2)
+  (setq js2-basic-offset 4)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -165,7 +165,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 runtime macros/matchit.vim
-let g:airline_theme='base16'
+let g:airline_theme='base16_bright'
 let g:racer_cmd = "~/src/racer/target/release/racer"
 let b:surround_indent = 1
 let g:syntastic_cpp_compiler_options = " -std=c++11"
@@ -379,4 +379,4 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal! g'\"" | endif
 endif
-colorscheme base16-default
+colorscheme base16-bright
