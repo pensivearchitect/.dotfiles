@@ -25,7 +25,7 @@ set shiftround
 set linebreak
 set matchtime=3
 set undofile
-set undodir=/Users/joshua/.vim/undo
+set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 set ttimeoutlen=50
@@ -107,8 +107,6 @@ Bundle 'heartsentwined/vim-ember-script'
 Bundle 'chriskempson/base16-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Blackrush/vim-gocode'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'm2mdas/phpcomplete-extended'
 Bundle 'mattn/emmet-vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'reedes/vim-pencil'
@@ -118,7 +116,6 @@ Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-rsi.git'
 Bundle 'tpope/vim-vinegar'
 Bundle 'godlygeek/tabular'
-Bundle 'tpope/timl'
 Bundle 'slim-template/vim-slim'
 Bundle 'jpalardy/vim-slime'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -165,6 +162,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 runtime macros/matchit.vim
+let g:vroom_use_dispatch = 1
 let g:airline_theme='base16_bright'
 let g:racer_cmd = "~/src/racer/target/release/racer"
 let b:surround_indent = 1
@@ -224,6 +222,7 @@ let g:rbpt_colorpairs = [
 au BufWrite *.rs :Autoformat
 au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1
 au BufNewFile,BufRead *.es6 setlocal filetype=javascript foldlevel=1
+au BufNewFile,BufRead *.rs setlocal filetype=rust foldlevel=1
 
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd FileType ruby let g:rubycomplete_buffer_loading=1
@@ -235,7 +234,7 @@ autocmd FileType ruby  let g:rubycomplete_include_objectspace = 1
 autocmd Filetype ruby  let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype scala let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype php   let g:EclimCompletionMethod = 'omnifunc'
-nnoremap <cr> :Dispatch<cr>
+" nnoremap <cr> :Dispatch<cr>
 let b:EclimPhpHtmlValidate = 1
 let g:EclimCompletionMethod = 'omnifunc'
 autocmd Filetype c map <f4> :make<cr>
