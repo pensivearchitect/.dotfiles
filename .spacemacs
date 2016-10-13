@@ -65,6 +65,7 @@
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
+  (add-to-list 'load-path "~/.emacs.d/themes/doom-theme")
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -90,6 +91,8 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-dark
+                         doom-one
                          monokai
                          solarized-light
                          spacemacs-dark
@@ -218,6 +221,8 @@ layers configuration."
   (require 'js2-refactor)
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (setq js2-basic-offset 4)
+  (require 'doom-theme)
+  (load-theme 'doom-dark t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
